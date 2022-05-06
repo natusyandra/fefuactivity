@@ -8,7 +8,7 @@
 import UIKit
 
 
-class LoginViewController: UIViewController {
+class LoginViewController: FlexScrollViewController {
 
     struct Constants {
         static let cornerRadius: CGFloat = 8.0
@@ -82,42 +82,42 @@ class LoginViewController: UIViewController {
     }
     
     func addSubviews() {
-        view.addSubview(userLoginField)
-        view.addSubview(passwordField)
-        view.addSubview(proceedButton)
-        view.addSubview(logoComeOn)
-        view.addSubview(logoReg)
+        contentView.addSubview(userLoginField)
+        contentView.addSubview(passwordField)
+        contentView.addSubview(proceedButton)
+        contentView.addSubview(logoComeOn)
+        contentView.addSubview(logoReg)
+        scrollView.alwaysBounceVertical = false
+        scrollView.keyboardDismissMode = .onDrag
     }
     
     func layoutViews() {
         NSLayoutConstraint.activate([
-            userLoginField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            userLoginField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            userLoginField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            userLoginField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            userLoginField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
+            userLoginField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             userLoginField.heightAnchor.constraint(equalToConstant: 50),
-            userLoginField.widthAnchor.constraint(equalToConstant: 343),
 
-            passwordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            passwordField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            passwordField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            passwordField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             passwordField.topAnchor.constraint(equalTo: userLoginField.bottomAnchor, constant: 16),
             passwordField.heightAnchor.constraint(equalToConstant: 50),
-            passwordField.widthAnchor.constraint(equalToConstant: 343),
             
             proceedButton.heightAnchor.constraint(equalToConstant: 50),
-            proceedButton.widthAnchor.constraint(equalToConstant: 311),
             proceedButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 40),
-            proceedButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            proceedButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            proceedButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
+            proceedButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32),
             
             logoComeOn.heightAnchor.constraint(equalToConstant: 302),
-            logoComeOn.widthAnchor.constraint(equalToConstant: 375),
+            logoComeOn.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            logoComeOn.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
             logoComeOn.topAnchor.constraint(equalTo: proceedButton.bottomAnchor, constant: 25),
-            logoComeOn.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            
+
             logoReg.widthAnchor.constraint(equalToConstant: 87.23),
             logoReg.heightAnchor.constraint(equalToConstant: 56),
-            logoReg.topAnchor.constraint(equalTo: logoComeOn.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-            logoReg.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0)
+            logoReg.topAnchor.constraint(greaterThanOrEqualTo: logoComeOn.bottomAnchor, constant: 0),
+            logoReg.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0),
+            logoReg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
         ])
     }
 }
