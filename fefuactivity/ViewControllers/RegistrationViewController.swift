@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class RegistrationViewController: UIViewController, UICollectionViewDelegate {
+class RegistrationViewController: FlexScrollViewController {
     
     struct Constants {
         static let cornerRadius: CGFloat = 8.0
@@ -153,63 +153,55 @@ class RegistrationViewController: UIViewController, UICollectionViewDelegate {
         view.addSubview(proceedButton)
         view.addSubview(confidentLabel)
         view.addSubview(logoReg)
-        
+        scrollView.alwaysBounceVertical = false
+        scrollView.keyboardDismissMode = .onDrag
     }
     
     func layoutViews() {
         NSLayoutConstraint.activate([
-            userLoginField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            userLoginField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            userLoginField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            userLoginField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            userLoginField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
+            userLoginField.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 16),
             userLoginField.heightAnchor.constraint(equalToConstant: 50),
-            userLoginField.widthAnchor.constraint(equalToConstant: 343),
             
-            userNameField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            userNameField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            userNameField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            userNameField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             userNameField.topAnchor.constraint(equalTo: userLoginField.bottomAnchor, constant: 16),
             userNameField.heightAnchor.constraint(equalToConstant: 50),
-            userNameField.widthAnchor.constraint(equalToConstant: 343),
             
-            passwordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            passwordField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            passwordField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            passwordField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             passwordField.topAnchor.constraint(equalTo: userNameField.bottomAnchor, constant: 16),
             passwordField.heightAnchor.constraint(equalToConstant: 50),
-            passwordField.widthAnchor.constraint(equalToConstant: 343),
             
-            doublePasswordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            doublePasswordField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            doublePasswordField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            doublePasswordField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             doublePasswordField.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 16),
             doublePasswordField.heightAnchor.constraint(equalToConstant: 50),
-            doublePasswordField.widthAnchor.constraint(equalToConstant: 343),
             
             gender.heightAnchor.constraint(equalToConstant: 22),
-            gender.widthAnchor.constraint(equalToConstant: 32),
-            gender.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 31),
-            gender.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -312),
+            gender.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 31),
+            gender.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -312),
             gender.topAnchor.constraint(equalTo: doublePasswordField.bottomAnchor, constant: 35),
             
             genderSelect.heightAnchor.constraint(equalToConstant: 22),
-            genderSelect.widthAnchor.constraint(equalToConstant: 80),
-            genderSelect.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 244),
-            genderSelect.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -51),
+            genderSelect.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 244),
+            genderSelect.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -51),
             genderSelect.topAnchor.constraint(equalTo: doublePasswordField.bottomAnchor, constant: 35),
             
             proceedButton.heightAnchor.constraint(equalToConstant: 50),
-            proceedButton.widthAnchor.constraint(equalToConstant: 311),
             proceedButton.topAnchor.constraint(equalTo: doublePasswordField.bottomAnchor, constant: 106),
-            proceedButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            proceedButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            proceedButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
+            proceedButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32),
             
             confidentLabel.topAnchor.constraint(equalTo: proceedButton.bottomAnchor, constant: 24),
-            confidentLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            confidentLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            confidentLabel.widthAnchor.constraint(equalToConstant: 343),
-            confidentLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            confidentLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            confidentLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             
-            logoReg.widthAnchor.constraint(equalToConstant: 87.23),
             logoReg.heightAnchor.constraint(equalToConstant: 56),
             logoReg.topAnchor.constraint(equalTo: confidentLabel.safeAreaLayoutGuide.bottomAnchor, constant: 48),
-            logoReg.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0)
+            logoReg.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0),
+            logoReg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
         ])
     }
 }
