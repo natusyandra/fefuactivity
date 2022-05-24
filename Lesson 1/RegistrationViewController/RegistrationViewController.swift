@@ -5,7 +5,6 @@
 //  Created by Котик on 04.05.2022.
 //
 
-import Foundation
 import UIKit
 
 
@@ -201,7 +200,7 @@ class RegistrationViewController: FlexScrollViewController {
             logoReg.heightAnchor.constraint(equalToConstant: 56),
             logoReg.topAnchor.constraint(equalTo: confidentLabel.safeAreaLayoutGuide.bottomAnchor, constant: 48),
             logoReg.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0),
-            logoReg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            logoReg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -66)
         ])
     }
 }

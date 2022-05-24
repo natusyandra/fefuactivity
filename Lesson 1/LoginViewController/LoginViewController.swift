@@ -9,7 +9,7 @@ import UIKit
 
 
 class LoginViewController: FlexScrollViewController {
-
+    
     struct Constants {
         static let cornerRadius: CGFloat = 8.0
     }
@@ -59,7 +59,7 @@ class LoginViewController: FlexScrollViewController {
         var image = UIImageView()
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
-        image.image = UIImage(named: "Come on")
+        image.image = UIImage(named: "comeOn")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -79,6 +79,9 @@ class LoginViewController: FlexScrollViewController {
         
         addSubviews()
         layoutViews()
+        proceedButton.addTarget(self,
+                                action: #selector(handleShowActivity),
+                                for: .touchUpInside)
     }
     
     func addSubviews() {
@@ -97,7 +100,7 @@ class LoginViewController: FlexScrollViewController {
             userLoginField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             userLoginField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             userLoginField.heightAnchor.constraint(equalToConstant: 50),
-
+            
             passwordField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
             passwordField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             passwordField.topAnchor.constraint(equalTo: userLoginField.bottomAnchor, constant: 16),
@@ -112,13 +115,19 @@ class LoginViewController: FlexScrollViewController {
             logoComeOn.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             logoComeOn.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
             logoComeOn.topAnchor.constraint(equalTo: proceedButton.bottomAnchor, constant: 25),
-
+            
             logoReg.widthAnchor.constraint(equalToConstant: 87.23),
             logoReg.heightAnchor.constraint(equalToConstant: 56),
-            logoReg.topAnchor.constraint(greaterThanOrEqualTo: logoComeOn.bottomAnchor, constant: 0),
+            logoReg.topAnchor.constraint(greaterThanOrEqualTo: logoComeOn.bottomAnchor, constant: 1),
             logoReg.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0),
-            logoReg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            logoReg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -66)
         ])
+    }
+    
+    @objc func handleShowActivity() {
+        let vc = TabBarController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
 }
 
