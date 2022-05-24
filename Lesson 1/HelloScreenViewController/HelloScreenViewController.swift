@@ -5,7 +5,6 @@
 //  Created by Котик on 04.05.2022.
 //
 
-import Foundation
 import UIKit
 
 
@@ -22,7 +21,7 @@ class HelloScreenViewController: UIViewController {
     private let logoView: UIImageView = {
         let header = UIImageView()
         header.clipsToBounds = true
-        header.image = UIImage(named: "LogoColor")
+        header.image = UIImage(named: "logoColor")
         header.translatesAutoresizingMaskIntoConstraints = false
         return header
     }()
@@ -49,14 +48,13 @@ class HelloScreenViewController: UIViewController {
         label.backgroundColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
+        label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         label.attributedText = NSMutableAttributedString(string: "Пожалуй лучший\nфитнес трекер в ДВФУ", attributes: [
             NSAttributedString.Key.kern: 0.35,
             NSAttributedString.Key.paragraphStyle: paragraphStyle
         ])
-        label.numberOfLines = 0
         return label
-        
     }()
     
     private let studentLabel: UILabel = {
@@ -72,6 +70,7 @@ class HelloScreenViewController: UIViewController {
             NSAttributedString.Key.kern: -0.24,
             NSAttributedString.Key.paragraphStyle: paragraphStyle
         ])
+        
         return label
     }()
     
@@ -140,7 +139,7 @@ class HelloScreenViewController: UIViewController {
     
     @objc func handleShowLogin() {
         navigationController?.pushViewController(LoginViewController(), animated: true)
-//        let nav = UINavigationController(rootViewController: LoginViewController())
-//        self.present(nav, animated: true, completion: nil)
+        //        let nav = UINavigationController(rootViewController: LoginViewController())
+        //        self.present(nav, animated: true, completion: nil)
     }
 }

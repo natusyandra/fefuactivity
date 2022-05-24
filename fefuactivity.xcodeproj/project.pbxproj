@@ -13,13 +13,18 @@
 		1DE4E5CC270A5CCE004A30CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4E5CA270A5CCE004A30CA /* Main.storyboard */; };
 		1DE4E5CE270A5CD0004A30CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4E5CD270A5CD0004A30CA /* Assets.xcassets */; };
 		1DE4E5D1270A5CD0004A30CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4E5CF270A5CD0004A30CA /* LaunchScreen.storyboard */; };
+		6E090A332835E68D006EC04F /* EmptyStateUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E090A322835E68D006EC04F /* EmptyStateUI.swift */; };
 		6E91563E2823A7380027B1DE /* logoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91563D2823A7380027B1DE /* logoView.swift */; };
 		6E9156402824CD560027B1DE /* FlexScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91563F2824CD560027B1DE /* FlexScrollView.swift */; };
+		6EA7BDD7282B955B00C18233 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA7BDD6282B955B00C18233 /* TableViewCell.swift */; };
+		6EA7BDE0282BB0DF00C18233 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA7BDDF282BB0DF00C18233 /* ActivityViewController.swift */; };
+		6EA7BDE2282E0BB800C18233 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA7BDE1282E0BB800C18233 /* TabBarController.swift */; };
 		6EB7657128222DE4005CC9D8 /* HelloScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB7657028222DE4005CC9D8 /* HelloScreenViewController.swift */; };
 		6EB7657328223180005CC9D8 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB7657228223180005CC9D8 /* RegistrationViewController.swift */; };
 		6EB7657528223486005CC9D8 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB7657428223486005CC9D8 /* ButtonView.swift */; };
 		6EB765792822480E005CC9D8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB765782822480E005CC9D8 /* Color.swift */; };
 		6EB7657B28227FC5005CC9D8 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB7657A28227FC5005CC9D8 /* Font.swift */; };
+		6EFDC2F32837504B00EE2D2F /* ActivityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDC2F22837504B00EE2D2F /* ActivityDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,13 +36,18 @@
 		1DE4E5CD270A5CD0004A30CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DE4E5D0270A5CD0004A30CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DE4E5D2270A5CD0004A30CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E090A322835E68D006EC04F /* EmptyStateUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateUI.swift; sourceTree = "<group>"; };
 		6E91563D2823A7380027B1DE /* logoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logoView.swift; sourceTree = "<group>"; };
 		6E91563F2824CD560027B1DE /* FlexScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexScrollView.swift; sourceTree = "<group>"; };
+		6EA7BDD6282B955B00C18233 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		6EA7BDDF282BB0DF00C18233 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		6EA7BDE1282E0BB800C18233 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		6EB7657028222DE4005CC9D8 /* HelloScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloScreenViewController.swift; sourceTree = "<group>"; };
 		6EB7657228223180005CC9D8 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		6EB7657428223486005CC9D8 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		6EB765782822480E005CC9D8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		6EB7657A28227FC5005CC9D8 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		6EFDC2F22837504B00EE2D2F /* ActivityDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +64,10 @@
 		1DE4E5B8270A5CCE004A30CA = {
 			isa = PBXGroup;
 			children = (
-				1DE4E5C3270A5CCE004A30CA /* fefuactivity */,
+				6EFDC2F9283CB1F200EE2D2F /* Resurces */,
+				6EA7BDD8282B9EAD00C18233 /* Lesson 1 */,
+				6EA7BDDC282B9F2F00C18233 /* Lesson 2 */,
+				6EB765762822447D005CC9D8 /* UIComponents */,
 				1DE4E5C2270A5CCE004A30CA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,19 +80,48 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1DE4E5C3270A5CCE004A30CA /* fefuactivity */ = {
+		6EA7BDD8282B9EAD00C18233 /* Lesson 1 */ = {
 			isa = PBXGroup;
 			children = (
-				6EB76577282244A1005CC9D8 /* ViewControllers */,
-				6EB765762822447D005CC9D8 /* UIComponents */,
-				1DE4E5C4270A5CCE004A30CA /* AppDelegate.swift */,
-				1DE4E5C6270A5CCE004A30CA /* SceneDelegate.swift */,
-				1DE4E5CA270A5CCE004A30CA /* Main.storyboard */,
-				1DE4E5CD270A5CD0004A30CA /* Assets.xcassets */,
-				1DE4E5CF270A5CD0004A30CA /* LaunchScreen.storyboard */,
-				1DE4E5D2270A5CD0004A30CA /* Info.plist */,
+				6EA7BDDB282B9EEE00C18233 /* HelloScreenViewController */,
+				6EFDC2FB283CB35700EE2D2F /* RegistrationViewController */,
+				6EA7BDDA282B9ED900C18233 /* LoginViewController */,
 			);
-			path = fefuactivity;
+			path = "Lesson 1";
+			sourceTree = "<group>";
+		};
+		6EA7BDDA282B9ED900C18233 /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1DE4E5C8270A5CCE004A30CA /* LoginViewController.swift */,
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		6EA7BDDB282B9EEE00C18233 /* HelloScreenViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6EB7657028222DE4005CC9D8 /* HelloScreenViewController.swift */,
+			);
+			path = HelloScreenViewController;
+			sourceTree = "<group>";
+		};
+		6EA7BDDC282B9F2F00C18233 /* Lesson 2 */ = {
+			isa = PBXGroup;
+			children = (
+				6EFDC2F6283CB15C00EE2D2F /* ActivityViewController */,
+				6EA7BDDD282B9F3B00C18233 /* TabBarController */,
+				6EFDC2F8283CB1B400EE2D2F /* ActivityDetailsViewController */,
+			);
+			path = "Lesson 2";
+			sourceTree = "<group>";
+		};
+		6EA7BDDD282B9F3B00C18233 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				6EA7BDE1282E0BB800C18233 /* TabBarController.swift */,
+			);
+			path = TabBarController;
 			sourceTree = "<group>";
 		};
 		6EB765762822447D005CC9D8 /* UIComponents */ = {
@@ -94,14 +136,59 @@
 			path = UIComponents;
 			sourceTree = "<group>";
 		};
-		6EB76577282244A1005CC9D8 /* ViewControllers */ = {
+		6EFDC2F6283CB15C00EE2D2F /* ActivityViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6EB7657028222DE4005CC9D8 /* HelloScreenViewController.swift */,
-				1DE4E5C8270A5CCE004A30CA /* LoginViewController.swift */,
+				6EFDC2FA283CB2F300EE2D2F /* UIComponents */,
+				6EA7BDDF282BB0DF00C18233 /* ActivityViewController.swift */,
+			);
+			path = ActivityViewController;
+			sourceTree = "<group>";
+		};
+		6EFDC2F8283CB1B400EE2D2F /* ActivityDetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6EFDC2F22837504B00EE2D2F /* ActivityDetailsViewController.swift */,
+			);
+			path = ActivityDetailsViewController;
+			sourceTree = "<group>";
+		};
+		6EFDC2F9283CB1F200EE2D2F /* Resurces */ = {
+			isa = PBXGroup;
+			children = (
+				1DE4E5D2270A5CD0004A30CA /* Info.plist */,
+				1DE4E5CF270A5CD0004A30CA /* LaunchScreen.storyboard */,
+				1DE4E5CD270A5CD0004A30CA /* Assets.xcassets */,
+				1DE4E5C6270A5CCE004A30CA /* SceneDelegate.swift */,
+				1DE4E5C4270A5CCE004A30CA /* AppDelegate.swift */,
+				1DE4E5CA270A5CCE004A30CA /* Main.storyboard */,
+			);
+			path = Resurces;
+			sourceTree = "<group>";
+		};
+		6EFDC2FA283CB2F300EE2D2F /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				6EFDC2FC283CB37000EE2D2F /* Cells */,
+				6E090A322835E68D006EC04F /* EmptyStateUI.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		6EFDC2FB283CB35700EE2D2F /* RegistrationViewController */ = {
+			isa = PBXGroup;
+			children = (
 				6EB7657228223180005CC9D8 /* RegistrationViewController.swift */,
 			);
-			path = ViewControllers;
+			path = RegistrationViewController;
+			sourceTree = "<group>";
+		};
+		6EFDC2FC283CB37000EE2D2F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6EA7BDD6282B955B00C18233 /* TableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +262,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E91563E2823A7380027B1DE /* logoView.swift in Sources */,
+				6E090A332835E68D006EC04F /* EmptyStateUI.swift in Sources */,
+				6EA7BDE2282E0BB800C18233 /* TabBarController.swift in Sources */,
 				1DE4E5C9270A5CCE004A30CA /* LoginViewController.swift in Sources */,
 				6EB7657128222DE4005CC9D8 /* HelloScreenViewController.swift in Sources */,
 				1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */,
@@ -182,6 +271,9 @@
 				1DE4E5C7270A5CCE004A30CA /* SceneDelegate.swift in Sources */,
 				6EB7657B28227FC5005CC9D8 /* Font.swift in Sources */,
 				6EB7657328223180005CC9D8 /* RegistrationViewController.swift in Sources */,
+				6EFDC2F32837504B00EE2D2F /* ActivityDetailsViewController.swift in Sources */,
+				6EA7BDD7282B955B00C18233 /* TableViewCell.swift in Sources */,
+				6EA7BDE0282BB0DF00C18233 /* ActivityViewController.swift in Sources */,
 				6EB7657528223486005CC9D8 /* ButtonView.swift in Sources */,
 				6EB765792822480E005CC9D8 /* Color.swift in Sources */,
 			);
