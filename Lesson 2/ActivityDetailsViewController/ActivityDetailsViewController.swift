@@ -8,7 +8,7 @@
 import UIKit
 
 
-class ActivityDeteilsViewConttroller: UIViewController {
+class ActivityDeteilsViewController: UIViewController {
     
     struct Constants {
         static let cornerRadius: CGFloat = 8.0

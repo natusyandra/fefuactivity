@@ -43,6 +43,8 @@
 	</dict>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>&quot;Позвольте нам получить доступ к вашему текущему местоположению, чтобы мы могли автоматически заполнить ваш исходный / конечный пункт назначения&quot;</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

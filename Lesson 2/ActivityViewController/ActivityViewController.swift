@@ -47,15 +47,21 @@ class ActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .secondarySystemBackground
+        
         addSubviews()
         layoutViews()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
         startButton.addTarget(self,
-                              action: #selector(openTableView),
+                              action: #selector(openMapView),
                               for: .touchUpInside)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Назад", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     func addSubviews() {
@@ -88,6 +94,11 @@ class ActivityViewController: UIViewController {
         emptyState.isHidden = true
         tableView.isHidden = false
     }
+    
+    @objc func openMapView() {
+        navigationController?.pushViewController(CreateActivityViewController(), animated: true)
+    }
+    
 }
 
 //MARK: - TableView
@@ -116,7 +127,7 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        let vc = ActivityDeteilsViewConttroller()
+        let vc = ActivityDeteilsViewController()
         vc.title = "Велосипед"
         navigationController?.pushViewController(vc, animated: true)
     }
