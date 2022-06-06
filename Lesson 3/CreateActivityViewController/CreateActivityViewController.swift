@@ -53,13 +53,14 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
         setupViews()
         layoutViews()
         setUp()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
     }
-
+    
     func setupViews() {
         view.addSubview(mapView)
         view.addSubview(activityStart)
@@ -68,15 +69,15 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
     
     func layoutViews() {
         NSLayoutConstraint.activate([
-                 mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                 mapView.leftAnchor.constraint(equalTo: view.leftAnchor),
-                 mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
-                 mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                 
-                 activityStart.heightAnchor.constraint(equalToConstant: 287),
-                 activityStart.leftAnchor.constraint(equalTo: view.leftAnchor),
-                 activityStart.rightAnchor.constraint(equalTo: view.rightAnchor),
-                 activityStart.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mapView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            activityStart.heightAnchor.constraint(equalToConstant: 287),
+            activityStart.leftAnchor.constraint(equalTo: view.leftAnchor),
+            activityStart.rightAnchor.constraint(equalTo: view.rightAnchor),
+            activityStart.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     

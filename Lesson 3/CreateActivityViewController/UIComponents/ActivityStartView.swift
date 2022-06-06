@@ -26,12 +26,23 @@ class ActivityStartView: UIView {
         return button
     }()
     
+    private lazy var activityCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.register(ActivityCollectionViewCell.self, forCellWithReuseIdentifier: ActivityCollectionViewCell.identifier)
+        view.delegate = self
+        view.dataSource = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     init() {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 25
         backgroundColor = .white
-
         setupViews()
         layoutConstraints()
     }
@@ -43,6 +54,7 @@ class ActivityStartView: UIView {
     func setupViews() {
         addSubview(startButton)
         addSubview(goLabel)
+        addSubview(activityCollectionView)
     }
     
     func layoutConstraints() {
@@ -53,6 +65,11 @@ class ActivityStartView: UIView {
             goLabel.topAnchor.constraint(equalTo: topAnchor, constant: 33),
             goLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 140),
             
+            activityCollectionView.topAnchor.constraint(equalTo: goLabel.bottomAnchor, constant: 10),
+            activityCollectionView.leftAnchor.constraint(equalTo: leftAnchor,constant: 16),
+            activityCollectionView.rightAnchor.constraint(equalTo: rightAnchor,constant: -16),
+            activityCollectionView.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -30),
+            
             startButton.heightAnchor.constraint(equalToConstant: 50),
             startButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             startButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
@@ -61,14 +78,23 @@ class ActivityStartView: UIView {
     }
 }
 
-extension ActivityStartView: UICollectionViewDataSource, UICollectionViewDelegate {
-
+extension ActivityStartView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return 3
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ActivityCollectionViewCell.identifier, for: indexPath) as!
+        ActivityCollectionViewCell
+
+        return cell
     }
-}
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+        {
+            return CGSize(width: 214, height: 84)
+        }
+    }
 
