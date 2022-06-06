@@ -20,6 +20,11 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
         return mapView
     }()
     
+    private var activityStart: ActivityStartView = {
+        var view = ActivityStartView()
+        return view
+    }()
+    
     private var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
@@ -57,14 +62,21 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
 
     func setupViews() {
         view.addSubview(mapView)
+        view.addSubview(activityStart)
+        
     }
     
     func layoutViews() {
         NSLayoutConstraint.activate([
-            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            mapView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                 mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                 mapView.leftAnchor.constraint(equalTo: view.leftAnchor),
+                 mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
+                 mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                 
+                 activityStart.heightAnchor.constraint(equalToConstant: 287),
+                 activityStart.leftAnchor.constraint(equalTo: view.leftAnchor),
+                 activityStart.rightAnchor.constraint(equalTo: view.rightAnchor),
+                 activityStart.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -148,5 +160,8 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
         return nil
     }
 }
+
+
+
 
 
