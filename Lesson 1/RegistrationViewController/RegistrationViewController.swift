@@ -139,7 +139,7 @@ class RegistrationViewController: FlexScrollViewController {
         view.backgroundColor = .systemBackground
         
         addSubviews()
-        layoutViews()
+        layoutConstraints()
     }
     
     func addSubviews() {
@@ -156,7 +156,7 @@ class RegistrationViewController: FlexScrollViewController {
         scrollView.keyboardDismissMode = .onDrag
     }
     
-    func layoutViews() {
+    func layoutConstraints() {
         NSLayoutConstraint.activate([
             userLoginField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
             userLoginField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),

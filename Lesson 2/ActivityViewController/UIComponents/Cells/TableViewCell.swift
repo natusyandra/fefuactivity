@@ -14,6 +14,7 @@ protocol FormTableViewCellDelegate: AnyObject {
 
 class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     
+    
     public weak var delegate: FormTableViewCellDelegate?
     
     private let distanceLabel: UILabel = {
@@ -76,7 +77,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         contentView.backgroundColor = .white
         backgroundColor = .clear
         
-        layoutViews()
+        layoutConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -88,7 +89,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
     }
     
-    func layoutViews() {
+    func layoutConstraints() {
         NSLayoutConstraint.activate([
             distanceLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
             distanceLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),

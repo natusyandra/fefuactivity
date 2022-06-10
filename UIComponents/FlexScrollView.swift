@@ -36,7 +36,7 @@ class FlexScrollViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupConstraints()
+        layoutConstraints()
         setupNotification()
     }
     
@@ -45,7 +45,7 @@ class FlexScrollViewController: UIViewController {
         scrollView.addSubview(contentView)
     }
     
-    private func setupConstraints() {
+    private func layoutConstraints() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

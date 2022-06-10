@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 
-enum ActivityTypes {
+enum ActivityTypes: String {
     case bike
     case run
     case walking
@@ -16,6 +17,13 @@ enum ActivityTypes {
 
 struct ActivityStartItem {
     let title: String
-    let image: String
+    let image: UIImage?
     let type: ActivityTypes
+}
+
+struct ActivitySave {
+    let time: Double
+    let distance: Double
+    let type: String
+    let route: Double
 }

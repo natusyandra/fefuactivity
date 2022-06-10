@@ -103,7 +103,7 @@ class ActivityDeteilsViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(addTapped))
         
         addSubviews()
-        layoutViews()
+        layoutConstraints()
     }
     
     func addSubviews() {
@@ -117,7 +117,7 @@ class ActivityDeteilsViewController: UIViewController {
         view.addSubview(startFinishLabel)
     }
     
-    func layoutViews() {
+    func layoutConstraints() {
         NSLayoutConstraint.activate([
             distanceLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32),
             distanceLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -32),

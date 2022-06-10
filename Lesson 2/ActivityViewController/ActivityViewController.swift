@@ -49,7 +49,7 @@ class ActivityViewController: UIViewController {
         view.backgroundColor = .secondarySystemBackground
         
         addSubviews()
-        layoutViews()
+        layoutConstraints()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
@@ -70,7 +70,7 @@ class ActivityViewController: UIViewController {
         view.addSubview(emptyState)
     }
     
-    func layoutViews() {
+    func layoutConstraints() {
         NSLayoutConstraint.activate([
             startButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32),
             startButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -32),

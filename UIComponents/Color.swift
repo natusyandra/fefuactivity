@@ -12,6 +12,7 @@ import UIKit
 class Pallete {
     static var blueColor: UIColor = UIColor.hex("#007AFF")
     static var fillSecondary: UIColor = UIColor.hex("#787880")
+    static var blueDark: UIColor = UIColor.hex("0455AC")
 }
 
 extension UIColor {

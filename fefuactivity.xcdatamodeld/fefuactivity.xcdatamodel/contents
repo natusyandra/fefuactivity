@@ -4,7 +4,7 @@
         <attribute name="distance" optional="YES" attributeType="String"/>
         <attribute name="route" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="Activity" positionX="-63" positionY="-18" width="128" height="89"/>

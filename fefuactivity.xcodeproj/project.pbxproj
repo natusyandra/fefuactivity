@@ -16,6 +16,8 @@
 		6E090A332835E68D006EC04F /* EmptyStateUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E090A322835E68D006EC04F /* EmptyStateUI.swift */; };
 		6E867AAD284DCC170051E9A4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E867AAC284DCC170051E9A4 /* Models.swift */; };
 		6E867AB2284DCCE00051E9A4 /* ActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E867AB1284DCCE00051E9A4 /* ActivityCollectionViewCell.swift */; };
+		6E867AB4284F19FD0051E9A4 /* ActivityPauseStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E867AB3284F19FD0051E9A4 /* ActivityPauseStopView.swift */; };
+		6E867AB6284F1CF00051E9A4 /* ButtonViewСircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E867AB5284F1CF00051E9A4 /* ButtonViewСircle.swift */; };
 		6E8F27FC284878AA00C5575B /* fefuactivity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F27FA284878AA00C5575B /* fefuactivity.xcdatamodeld */; };
 		6E91563E2823A7380027B1DE /* logoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91563D2823A7380027B1DE /* logoView.swift */; };
 		6E9156402824CD560027B1DE /* FlexScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91563F2824CD560027B1DE /* FlexScrollView.swift */; };
@@ -44,6 +46,8 @@
 		6E090A322835E68D006EC04F /* EmptyStateUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateUI.swift; sourceTree = "<group>"; };
 		6E867AAC284DCC170051E9A4 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		6E867AB1284DCCE00051E9A4 /* ActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewCell.swift; sourceTree = "<group>"; };
+		6E867AB3284F19FD0051E9A4 /* ActivityPauseStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPauseStopView.swift; sourceTree = "<group>"; };
+		6E867AB5284F1CF00051E9A4 /* ButtonViewСircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ButtonViewСircle.swift"; sourceTree = "<group>"; };
 		6E8F27FB284878AA00C5575B /* fefuactivity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = fefuactivity.xcdatamodel; sourceTree = "<group>"; };
 		6E91551228470FEF0016FF17 /* FakeLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FakeLocation.gpx; sourceTree = "<group>"; };
 		6E91563D2823A7380027B1DE /* logoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logoView.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				6E9C7250284DBDAF00F428DC /* ActivityStartView.swift */,
+				6E867AB3284F19FD0051E9A4 /* ActivityPauseStopView.swift */,
 				6E867AB0284DCCC10051E9A4 /* Cell */,
 			);
 			path = UIComponents;
@@ -184,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				6EB7657428223486005CC9D8 /* ButtonView.swift */,
+				6E867AB5284F1CF00051E9A4 /* ButtonViewСircle.swift */,
 				6EB765782822480E005CC9D8 /* Color.swift */,
 				6EB7657A28227FC5005CC9D8 /* Font.swift */,
 				6E91563D2823A7380027B1DE /* logoView.swift */,
@@ -326,10 +332,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E867AB6284F1CF00051E9A4 /* ButtonViewСircle.swift in Sources */,
 				6E91563E2823A7380027B1DE /* logoView.swift in Sources */,
 				6E090A332835E68D006EC04F /* EmptyStateUI.swift in Sources */,
 				6EA7BDE2282E0BB800C18233 /* TabBarController.swift in Sources */,
 				1DE4E5C9270A5CCE004A30CA /* LoginViewController.swift in Sources */,
+				6E867AB4284F19FD0051E9A4 /* ActivityPauseStopView.swift in Sources */,
 				6EB7657128222DE4005CC9D8 /* HelloScreenViewController.swift in Sources */,
 				1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */,
 				6E9156402824CD560027B1DE /* FlexScrollView.swift in Sources */,

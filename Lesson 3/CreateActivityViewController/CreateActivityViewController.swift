@@ -20,8 +20,15 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
         return mapView
     }()
     
-    private var activityStart: ActivityStartView = {
+    private lazy var activityStartView: ActivityStartView = {
         var view = ActivityStartView()
+        view.delegate = self
+        return view
+    }()
+    
+    private var activityPauseStopView: ActivityPauseStopView = {
+        var view = ActivityPauseStopView()
+        view.isHidden = true
         return view
     }()
     
@@ -31,9 +38,21 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
         return manager
     }()
     
+    var timeData = 0
+    
+    var timerAdd = Timer()
+
     var coordsArray: [CLLocationCoordinate2D] = []
     
     var isFirstLoad: Bool = true
+    
+    public var dataSource: [ActivityStartItem] = [
+        ActivityStartItem(title: "Велосипед", image: UIImage(named: "bikeImage"), type: .bike),
+        ActivityStartItem(title: "Бег", image: UIImage(named: "bikeImage"), type: .run),
+        ActivityStartItem(title: "Ходьба", image: UIImage(named: "bikeImage"), type: .walking)
+    ]
+    
+    var selectedActivityStartItem: ActivityStartItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +72,22 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
         setupViews()
         layoutViews()
         setUp()
+        timerAction()
         
+        
+        selectedActivityStartItem = dataSource[0]
+        
+        
+        //Доделай
+
+        activityPauseStopView.pauseButton.addTarget(self, action: #selector(pauseButtonTap), for: .touchUpInside)
+        
+        activityPauseStopView.finishButton.addTarget(self, action: #selector(finishButtonTap), for: .touchUpInside)
+        
+        
+        activityStartView.dataSource = dataSource
+
+        //
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,8 +97,8 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
     
     func setupViews() {
         view.addSubview(mapView)
-        view.addSubview(activityStart)
-        
+        view.addSubview(activityStartView)
+        view.addSubview(activityPauseStopView)
     }
     
     func layoutViews() {
@@ -73,11 +107,16 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
             mapView.leftAnchor.constraint(equalTo: view.leftAnchor),
             mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            activityStartView.heightAnchor.constraint(equalToConstant: 287),
+            activityStartView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            activityStartView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            activityStartView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            activityStart.heightAnchor.constraint(equalToConstant: 287),
-            activityStart.leftAnchor.constraint(equalTo: view.leftAnchor),
-            activityStart.rightAnchor.constraint(equalTo: view.rightAnchor),
-            activityStart.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            activityPauseStopView.heightAnchor.constraint(equalToConstant: 230),
+            activityPauseStopView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            activityPauseStopView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            activityPauseStopView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -97,6 +136,47 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
         determineCurrentLocation()
     }
     
+    @objc func timerAction() {
+        
+        let hours = timeData / 3600
+        
+        let minutes = timeData / 60 % 60
+        
+        let seconds = timeData % 60
+        
+        let restTime = ((hours<10) ? "0" : "") + String(hours) + ":" + ((minutes<10) ? "0" : "") + String(minutes) + ":" + ((seconds<10) ? "0" : "") + String(seconds)
+        
+        timeData = timeData + 1
+        
+        activityPauseStopView.timeLabel.text = "\(restTime)"
+    }
+    
+    @objc func pauseButtonTap() {
+        
+        if (activityPauseStopView.pauseButton.isSelected) {
+            activityPauseStopView.pauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            
+            locationManager.startUpdatingLocation()
+            
+            timerAdd = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        } else {
+            activityPauseStopView.pauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            
+            locationManager.stopUpdatingLocation()
+            
+            timerAdd.invalidate()
+        }
+        activityPauseStopView.pauseButton.isSelected.toggle()
+    }
+
+    @objc func finishButtonTap() {
+        locationManager.stopUpdatingLocation()
+        
+        timerAdd.invalidate()
+        
+        navigationController?.pushViewController(ActivityDeteilsViewController(), animated: true)
+    }
+
     func drawLines() {
         
         let testLine = MKPolyline(coordinates: coordsArray, count: coordsArray.count)
@@ -105,7 +185,6 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
         
         let starAnnotaion = MKPointAnnotation()
         starAnnotaion.coordinate = first
-        
         
         let finishAnnotaion = MKPointAnnotation()
         finishAnnotaion.coordinate = last
@@ -162,7 +241,24 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
     }
 }
 
-
-
+extension CreateActivityViewController: ActivityStartViewProtocol {
+    func didStartButtonTapped() {
+        
+        locationManager.startUpdatingLocation()
+        
+        timerAdd.invalidate()
+        
+        timerAdd = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        
+        activityPauseStopView.typeLabel.text = selectedActivityStartItem?.title
+        
+        activityStartView.isHidden = true
+        activityPauseStopView.isHidden = false
+    }
+    
+    func selectItem(_ index: Int) {
+        selectedActivityStartItem = dataSource[index]
+    }
+}
 
 

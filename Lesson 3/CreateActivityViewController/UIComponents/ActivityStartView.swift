@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ActivityStartViewProtocol: AnyObject {
+    func selectItem(_ index: Int)
+    func didStartButtonTapped()
+}
 
 class ActivityStartView: UIView {
     
@@ -20,7 +24,7 @@ class ActivityStartView: UIView {
         return label
     }()
     
-    public let startButton: MyButton = {
+    private let startButton: MyButton = {
         let button = MyButton()
         button.setTitle("Старт", for: .normal)
         return button
@@ -29,14 +33,24 @@ class ActivityStartView: UIView {
     private lazy var activityCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(ActivityCollectionViewCell.self, forCellWithReuseIdentifier: ActivityCollectionViewCell.identifier)
         view.delegate = self
         view.dataSource = self
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.showsHorizontalScrollIndicator = false
         return view
     }()
+    
+    public var delegate: ActivityStartViewProtocol?
+    
+    public var dataSource: [ActivityStartItem] = [] {
+        didSet {
+            activityCollectionView.reloadData()
+            activityCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .left)
+        }
+    }
     
     init() {
         super.init(frame: .zero)
@@ -45,6 +59,10 @@ class ActivityStartView: UIView {
         backgroundColor = .white
         setupViews()
         layoutConstraints()
+        
+        startButton.addTarget(self,
+                              action: #selector(startButtonTap),
+                              for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -66,8 +84,8 @@ class ActivityStartView: UIView {
             goLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 140),
             
             activityCollectionView.topAnchor.constraint(equalTo: goLabel.bottomAnchor, constant: 10),
-            activityCollectionView.leftAnchor.constraint(equalTo: leftAnchor,constant: 16),
-            activityCollectionView.rightAnchor.constraint(equalTo: rightAnchor,constant: -16),
+            activityCollectionView.leftAnchor.constraint(equalTo: leftAnchor,constant: 0),
+            activityCollectionView.rightAnchor.constraint(equalTo: rightAnchor,constant: 0),
             activityCollectionView.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -30),
             
             startButton.heightAnchor.constraint(equalToConstant: 50),
@@ -76,25 +94,33 @@ class ActivityStartView: UIView {
             startButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32)
         ])
     }
+    
+    @objc func startButtonTap() {
+        delegate?.didStartButtonTapped()
+    }
 }
 
 extension ActivityStartView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return 3
+        return dataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ActivityCollectionViewCell.identifier, for: indexPath) as!
         ActivityCollectionViewCell
-
+        cell.setupData(dataSource[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-        {
-            return CGSize(width: 214, height: 84)
-        }
+    {
+        return CGSize(width: 214, height: 84)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.selectItem(indexPath.row)
+    }
+
+}
 
