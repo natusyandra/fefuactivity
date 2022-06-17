@@ -6,10 +6,10 @@
 //
 
 import UIKit
-
+import CoreData
 
 struct Section {
-    let data: [String]
+    let data: [ActivityEntity]
     let title: String
 }
 
@@ -21,12 +21,13 @@ class ActivityViewController: UIViewController {
                            forCellReuseIdentifier: "identifier")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-        tableView.isHidden = true
+//        tableView.isHidden = true
         return tableView
     }()
     
     private let emptyState: EmptyState = {
         let emptyState = EmptyState()
+        emptyState.isHidden = true
         return emptyState
     }()
     
@@ -37,13 +38,8 @@ class ActivityViewController: UIViewController {
     }()
     
     //MARK: - Sections/Data
-    private var dataSourse: [Section] = [
-        Section(data: ["Один", "Два", "Три"], title: "Вчера"),
-        Section(data: ["Чертыре", "Пять"], title: "Сегодня"),
-        Section(data: ["Шесть", "Семь"], title: "Завтра")
-    ]
+    public var dataSourse: [Section] = []
 
-    // MARK: - Life
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .secondarySystemBackground
@@ -57,11 +53,42 @@ class ActivityViewController: UIViewController {
                               action: #selector(openMapView),
                               for: .touchUpInside)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Назад", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+        
+//        deleteAllCoreData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        
+        getFromCoreData()
+    }
+    
+    func getFromCoreData() {
+        let fechRequest: NSFetchRequest<ActivityEntity> = ActivityEntity.fetchRequest()
+        let context = FEFUCoreDataContainer.instance.context
+        
+        do {
+            let activities = try context.fetch(fechRequest)
+            dataSourse = mappingList(activities)
+            tableView.reloadData()
+            
+        } catch {
+            print("ERROR")
+        }
+    }
+    
+    func deleteAllCoreData() {
+        let fechRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ActivityEntity")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fechRequest)
+        let context = FEFUCoreDataContainer.instance.context
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+            tableView.reloadData()
+        } catch {
+            print("ERROR")
+        }
     }
     
     func addSubviews() {
@@ -98,7 +125,46 @@ class ActivityViewController: UIViewController {
     @objc func openMapView() {
         navigationController?.pushViewController(CreateActivityViewController(), animated: true)
     }
+        
+    func mappingList(_ list: [ActivityEntity]) -> [Section] {
+        let dictionary = Dictionary(grouping: list, by: {
+            convertDateToString(date: $0.finishTime ?? Date(), format:"yyyyMMdd")
+        })
+        let activities = dictionary
+            .sorted(by: {$0.key > $1.key})
+            .compactMap({
+                Section(
+                    data: $0.value,
+                    title: getCurrentDay($0.key)
+                )
+            })
+        
+        return activities
+    }
     
+    func convertDateToString(date: Date,format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: date)
+    }
+    
+    func getCurrentDay(_ value: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        formatter.locale = Locale(identifier: "ru_RU")
+        guard let date = formatter.date(from: value) else {
+            return ""
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.doesRelativeDateFormatting = true
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        
+        let dateString = dateFormatter.string(from: date)
+        
+        return dateString
+    }
 }
 
 //MARK: - TableView
@@ -114,6 +180,7 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "identifier", for: indexPath) as! FormTableViewCell
+        cell.setupData(dataSourse[indexPath.section].data[indexPath.row])
         return cell
     }
     
@@ -128,7 +195,8 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         let vc = ActivityDeteilsViewController()
-        vc.title = "Велосипед"
+        vc.setupData(dataSourse[indexPath.section].data[indexPath.row])
+        vc.title = dataSourse[indexPath.section].data[indexPath.row].type
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -147,7 +215,6 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
         return headerView
     }
 }
-
     
  
 

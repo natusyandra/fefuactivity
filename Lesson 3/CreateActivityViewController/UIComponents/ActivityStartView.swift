@@ -121,6 +121,5 @@ extension ActivityStartView: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.selectItem(indexPath.row)
     }
-
 }
 

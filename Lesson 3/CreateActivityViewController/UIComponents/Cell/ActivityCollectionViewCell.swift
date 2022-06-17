@@ -13,7 +13,6 @@ struct ActivityCollectionCellModel: Decodable {
     let name: String
 }
 
-
 class ActivityCollectionViewCell: UICollectionViewCell {
     static let identifier = "ActivityCollectionViewCell"
     
@@ -83,13 +82,13 @@ class ActivityCollectionViewCell: UICollectionViewCell {
             activityTypeView.leftAnchor.constraint(equalTo: leftAnchor,constant: 16),
             activityTypeView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30)
         ])
-}
+    }
     
     func bind(_ model: ActivityCollectionCellModel) {
         activityTypeView.text = model.name
         unfocus()
     }
-
+    
     func focus() {
         contentView.layer.borderWidth = 2
         contentView.layer.borderColor = UIColor(red: 0.294, green: 0.035, blue: 0.953, alpha: 1).cgColor
@@ -101,7 +100,7 @@ class ActivityCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowOffset = CGSize(width: 0, height: 2.78)
         contentView.clipsToBounds = false
     }
-
+    
     func unfocus() {
         contentView.layer.shadowOpacity = 0
         contentView.layer.borderWidth = 1

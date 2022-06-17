@@ -38,21 +38,24 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
         return manager
     }()
     
-    var timeData = 0
-    
-    var timerAdd = Timer()
-
-    var coordsArray: [CLLocationCoordinate2D] = []
-    
-    var isFirstLoad: Bool = true
-    
     public var dataSource: [ActivityStartItem] = [
         ActivityStartItem(title: "Велосипед", image: UIImage(named: "bikeImage"), type: .bike),
         ActivityStartItem(title: "Бег", image: UIImage(named: "bikeImage"), type: .run),
         ActivityStartItem(title: "Ходьба", image: UIImage(named: "bikeImage"), type: .walking)
     ]
     
+    var timerAdd = Timer()
+    
+    var coordsArray: [CLLocationCoordinate2D] = []
+    var isFirstLoad: Bool = true
     var selectedActivityStartItem: ActivityStartItem?
+    
+    var activity: ActivityEntity = ActivityEntity()
+    var activityTimeStart: Date = Date()
+    var activityType: String = ""
+    var acivityDistance: Double = 0.0
+    var activityTimeFinish: Date = Date()
+    var timerData = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +69,7 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
         // Check for Location Services
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
+            locationManager.stopUpdatingLocation()
         }
         
         setupViews()
@@ -74,20 +77,13 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
         setUp()
         timerAction()
         
-        
         selectedActivityStartItem = dataSource[0]
         
-        
-        //Доделай
-
         activityPauseStopView.pauseButton.addTarget(self, action: #selector(pauseButtonTap), for: .touchUpInside)
         
         activityPauseStopView.finishButton.addTarget(self, action: #selector(finishButtonTap), for: .touchUpInside)
         
-        
         activityStartView.dataSource = dataSource
-
-        //
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,7 +103,7 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
             mapView.leftAnchor.constraint(equalTo: view.leftAnchor),
             mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
+            
             activityStartView.heightAnchor.constraint(equalToConstant: 287),
             activityStartView.leftAnchor.constraint(equalTo: view.leftAnchor),
             activityStartView.rightAnchor.constraint(equalTo: view.rightAnchor),
@@ -138,15 +134,15 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
     
     @objc func timerAction() {
         
-        let hours = timeData / 3600
+        let hours = timerData / 3600
         
-        let minutes = timeData / 60 % 60
+        let minutes = timerData / 60 % 60
         
-        let seconds = timeData % 60
+        let seconds = timerData % 60
         
         let restTime = ((hours<10) ? "0" : "") + String(hours) + ":" + ((minutes<10) ? "0" : "") + String(minutes) + ":" + ((seconds<10) ? "0" : "") + String(seconds)
         
-        timeData = timeData + 1
+        timerData = timerData + 1
         
         activityPauseStopView.timeLabel.text = "\(restTime)"
     }
@@ -166,17 +162,29 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
             
             timerAdd.invalidate()
         }
+        
         activityPauseStopView.pauseButton.isSelected.toggle()
     }
-
+    
     @objc func finishButtonTap() {
         locationManager.stopUpdatingLocation()
-        
         timerAdd.invalidate()
+        activityTimeFinish = Date()
         
-        navigationController?.pushViewController(ActivityDeteilsViewController(), animated: true)
+        navigationController?.popViewController(animated: true)
+        savetoCoreData()
     }
-
+    
+    func savetoCoreData() {
+        let activity = ActivityEntity(context: FEFUCoreDataContainer.instance.context)
+        activity.distance = acivityDistance
+        activity.startTime = activityTimeStart
+        activity.finishTime = Date()
+        activity.type = activityType
+        activity.timerData = timerData
+        FEFUCoreDataContainer.instance.saveContext()
+    }
+    
     func drawLines() {
         
         let testLine = MKPolyline(coordinates: coordsArray, count: coordsArray.count)
@@ -210,8 +218,25 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
             isFirstLoad = false
         }
         
+        let from = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        
+        if let lastAddedLocation = coordsArray.last {
+            
+            let distance = lastAddedLocation.distance(from: from)
+            
+            acivityDistance += distance
+        }
+        
         coordsArray.append(userLocation.coordinate)
+        addCoordLabel()
         drawLines()
+    }
+    
+    func addCoordLabel() {
+        let value = Double(acivityDistance * 1000).rounded() / 1000
+        let roundText = String(format: "%.1f", value)
+        
+        activityPauseStopView.distanceLabel.text = "\(roundText) км"
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -242,6 +267,7 @@ class CreateActivityViewController:  UIViewController, CLLocationManagerDelegate
 }
 
 extension CreateActivityViewController: ActivityStartViewProtocol {
+    
     func didStartButtonTapped() {
         
         locationManager.startUpdatingLocation()
@@ -254,10 +280,23 @@ extension CreateActivityViewController: ActivityStartViewProtocol {
         
         activityStartView.isHidden = true
         activityPauseStopView.isHidden = false
+        
+        activityTimeStart = Date()
+        activityType = selectedActivityStartItem?.title ?? ""
+        
     }
     
     func selectItem(_ index: Int) {
         selectedActivityStartItem = dataSource[index]
+    }
+}
+
+extension CLLocationCoordinate2D {
+    
+    func distance(from: CLLocationCoordinate2D) -> CLLocationDistance {
+        let from = CLLocation(latitude: from.latitude, longitude: from.longitude)
+        let to = CLLocation(latitude: self.latitude, longitude: self.longitude)
+        return from.distance(from: to)
     }
 }
 

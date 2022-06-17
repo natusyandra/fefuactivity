@@ -15,18 +15,15 @@ class ActivityPauseStopView: UIView {
         label.textColor = .black
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 22, weight: . semibold)
-        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let distanceLabel: UILabel = {
+    public let distanceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.textAlignment = .left
-        label.text = "14 км"
         label.font = UIFont.systemFont(ofSize: 24, weight: . regular)
-        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -34,7 +31,7 @@ class ActivityPauseStopView: UIView {
     public let timeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-//        label.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+        //        label.font = UIFont.systemFont(ofSize: 24, weight: .regular)
         label.font = UIFont.monospacedSystemFont(ofSize: 24, weight: .regular)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,11 +44,11 @@ class ActivityPauseStopView: UIView {
                         for: .normal)
         return button
     }()
-
+    
     public let finishButton: CircleButton = {
         let button = CircleButton()
         button.setImage(UIImage(named: "racingFlag"),
-                for: .normal)
+                        for: .normal)
         button.backgroundColor = Pallete.blueDark
         return button
     }()
@@ -61,7 +58,7 @@ class ActivityPauseStopView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 25
         backgroundColor = .white
-  
+        
         setupViews()
         layoutConstraints()
     }
@@ -86,7 +83,7 @@ class ActivityPauseStopView: UIView {
             typeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 24),
             typeLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 24),
             
-            distanceLabel.widthAnchor.constraint(equalToConstant: 65),
+            distanceLabel.widthAnchor.constraint(equalToConstant: 100),
             distanceLabel.heightAnchor.constraint(equalToConstant: 35),
             distanceLabel.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 15),
             distanceLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 24),

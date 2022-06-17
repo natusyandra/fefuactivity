@@ -17,19 +17,17 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     public weak var delegate: FormTableViewCellDelegate?
     
-    private let distanceLabel: UILabel = {
+    public let distanceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.text = "14.32 км"
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let timeLabel: UILabel = {
+    public let timeLabel: UILabel = {
         let label = UILabel()
-        label.text = "2 часа 46 минут"
         label.textColor = .secondaryLabel
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.numberOfLines = 1
@@ -37,10 +35,10 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         return label
     }()
     
-    private let meansLabel: UILabel = {
+    public let meansLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.text = "Велосипед"
+        label.text = ""
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +52,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         return image
     }()
     
-    private let timeAgoLabel: UILabel = {
+    public let timeAgoLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.text = "14 часов назад"
@@ -113,4 +111,39 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
             timeAgoLabel.heightAnchor.constraint(equalToConstant: 18)
         ])
     }
+    
+    public func setupData(_ data: ActivityEntity) {
+        
+        let value = (data.distance * 1000).rounded() / 1000
+        let roundText = String(format: "%.1f", value)
+        distanceLabel.text = "\(roundText) км"
+        
+        meansLabel.text = data.type
+        
+        let hours = data.timerData / 3600
+        let minutes = data.timerData / 60 % 60
+        let restTime = ((hours<10) ? "" : "") + String(hours) + " часа" + ((minutes<10) ? " " : "") + String(minutes) + " минут"
+        timeLabel.text = "\(restTime)"
+        
+        let date = Date()
+        let timeAgoFormatted = RelativeDateTimeFormatter()
+        timeAgoFormatted.unitsStyle = .full
+        let string = timeAgoFormatted.localizedString(for: data.finishTime ?? Date(), relativeTo: date)
+        timeAgoLabel.text = string
+    }
 }
+
+
+//extension Date {
+//   func getFormattedDate(format: String) -> String {
+//        let dateformat = DateFormatter()
+//        dateformat.dateFormat = format
+//        return dateformat.string(from: self)
+//    }
+    
+//    func timeAgoDisplay() -> String {
+//           let formatter = RelativeDateTimeFormatter()
+//           formatter.unitsStyle = .full
+//           return formatter.localizedString(for: self, relativeTo: Date())
+//       }
+//}

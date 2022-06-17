@@ -21,9 +21,3 @@ struct ActivityStartItem {
     let type: ActivityTypes
 }
 
-struct ActivitySave {
-    let time: Double
-    let distance: Double
-    let type: String
-    let route: Double
-}

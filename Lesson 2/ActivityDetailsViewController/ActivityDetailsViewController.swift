@@ -17,7 +17,6 @@ class ActivityDeteilsViewController: UIViewController {
     private let distanceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.text = "14.32 км"
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +26,6 @@ class ActivityDeteilsViewController: UIViewController {
     private let timeAgoLabelLeft: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
-        label.text = "14 часов назад"
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +34,6 @@ class ActivityDeteilsViewController: UIViewController {
     
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.text = "1 ч 42 мин"
         label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         label.numberOfLines = 1
@@ -47,7 +44,6 @@ class ActivityDeteilsViewController: UIViewController {
     private let startFinishLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
-        label.text = "Старт 14:49 · Финиш 16:31"
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +53,6 @@ class ActivityDeteilsViewController: UIViewController {
     private let meansLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.text = "Велосипед"
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +69,6 @@ class ActivityDeteilsViewController: UIViewController {
     private let timeAgoLabelRight: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
-        label.text = "14 часов назад"
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -153,4 +147,33 @@ class ActivityDeteilsViewController: UIViewController {
     @objc func addTapped() {
         print("Share button clicked")
     }
+    
+    public func setupData(_ data: ActivityEntity) {
+        
+        let value = (data.distance * 1000).rounded() / 1000
+        let roundText = String(format: "%.1f", value)
+        distanceLabel.text = "\(roundText) км"
+        
+        meansLabel.text = data.type
+        
+        let hours = data.timerData / 3600
+        let minutes = data.timerData / 60 % 60
+        let restTime = ((hours<10) ? "" : "") + String(hours) + " часа" + ((minutes<10) ? " " : "") + String(minutes) + " минут"
+        timeLabel.text = "\(restTime)"
+        
+        let date = Date()
+        let timeAgoFormatted = RelativeDateTimeFormatter()
+        timeAgoFormatted.unitsStyle = .full
+        let string = timeAgoFormatted.localizedString(for: data.finishTime ?? Date(), relativeTo: date)
+        timeAgoLabelLeft.text = string
+        timeAgoLabelRight.text = string
+        
+        let timeFormatted = DateFormatter()
+        timeFormatted.dateFormat = "HH:mm"
+        let startTime = timeFormatted.string(from: data.startTime ?? Date())
+        let finishTime = timeFormatted.string(from: data.finishTime ?? Date())
+        startFinishLabel.text = "Старт \(startTime) · Финиш \(finishTime)"
+    }
 }
+
+
