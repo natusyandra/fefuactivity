@@ -14,6 +14,10 @@ class RegistrationViewController: FlexScrollViewController {
         static let cornerRadius: CGFloat = 8.0
     }
     
+    var selectedRow = 0
+    
+    var genderData = ["Женщина", "Мужчина", "Лобстер", "Рептилойд", "Другое"]
+    
     private let userLoginField: UITextField = {
         let field = UITextField()
         field.placeholder = "Логин"
@@ -80,7 +84,7 @@ class RegistrationViewController: FlexScrollViewController {
         return field
     }()
     
-    private let gender: UILabel = {
+    private let genderLabel: UILabel = {
         let label = UILabel()
         label.text = "Пол"
         label.textColor = .black
@@ -90,15 +94,13 @@ class RegistrationViewController: FlexScrollViewController {
         return label
     }()
     
-    private let genderSelect: UILabel = {
-        let label = UILabel()
-        label.text = "Выберите"
-        label.textColor = .secondaryLabel
-        label.backgroundColor = .white
-        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        label.textAlignment = .right
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    var pickerViewButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Выберите", for: .normal)
+        button.setTitleColor(.secondaryLabel, for: .normal)
+        button.backgroundColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private let proceedButton: MyButton = {
@@ -119,10 +121,13 @@ class RegistrationViewController: FlexScrollViewController {
         label.textColor = .secondaryLabel
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        label.attributedText = NSMutableAttributedString(string: "Нажимая на кнопку, вы соглашаетесь с\nполитикой конфиденциальности и обработки\nперсональных данных, а также принимаете\n пользовательское соглашение", attributes: [
-            NSAttributedString.Key.kern: -0.24,
-            NSAttributedString.Key.paragraphStyle: paragraphStyle
-        ])
+        label.attributedText = NSMutableAttributedString(
+            string: "Нажимая на кнопку, вы соглашаетесь с\nполитикой конфиденциальности и обработки\nперсональных данных, а также принимаете\n пользовательское соглашение",
+            attributes: [
+                NSAttributedString.Key.kern: -0.24,
+                NSAttributedString.Key.paragraphStyle: paragraphStyle
+            ])
+        
         return label
     }()
     
@@ -138,8 +143,15 @@ class RegistrationViewController: FlexScrollViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemBackground
         
+        pickerViewButton.addTarget(self,
+                                   action: #selector(popUpPicker),
+                                   for: .touchUpInside)
+        proceedButton.addTarget(self,
+                                action: #selector(handleShowActivity),
+                                for: .touchUpInside)
+        
         addSubviews()
-        layoutViews()
+        layoutConstraints()
     }
     
     func addSubviews() {
@@ -147,8 +159,8 @@ class RegistrationViewController: FlexScrollViewController {
         view.addSubview(userLoginField)
         view.addSubview(passwordField)
         view.addSubview(doublePasswordField)
-        view.addSubview(gender)
-        view.addSubview(genderSelect)
+        view.addSubview(pickerViewButton)
+        view.addSubview(genderLabel)
         view.addSubview(proceedButton)
         view.addSubview(confidentLabel)
         view.addSubview(logoReg)
@@ -156,7 +168,50 @@ class RegistrationViewController: FlexScrollViewController {
         scrollView.keyboardDismissMode = .onDrag
     }
     
-    func layoutViews() {
+    @objc func handleShowActivity() {
+        let vc = TabBarController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+    
+    @objc func popUpPicker() {
+        
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSize(width: 50, height: 50)
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 350, height: 250))
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        
+        pickerView.selectRow(selectedRow, inComponent: 0, animated: false)
+        
+        vc.view.addSubview(pickerView)
+        
+        NSLayoutConstraint.activate([
+            pickerView.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor),
+            pickerView.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor)
+        ])
+        
+        let alert = UIAlertController(title: "Как вы идентифицируете себя?", message: "", preferredStyle: .actionSheet)
+        
+        alert.popoverPresentationController?.sourceView = pickerViewButton
+        alert.popoverPresentationController?.sourceRect = pickerViewButton.bounds
+        
+        alert.setValue(vc, forKey: "contentViewController")
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: { (UIAlertAction) in
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Выбрать", style: .default, handler: { (UIAlertAction) in
+            self.selectedRow = pickerView.selectedRow(inComponent: 0)
+            let selected = Array(self.genderData)[self.selectedRow]
+            let gender = selected
+            self.pickerViewButton.setTitle(gender, for: .normal)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func layoutConstraints() {
+        
         NSLayoutConstraint.activate([
             userLoginField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
             userLoginField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
@@ -178,15 +233,15 @@ class RegistrationViewController: FlexScrollViewController {
             doublePasswordField.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 16),
             doublePasswordField.heightAnchor.constraint(equalToConstant: 50),
             
-            gender.heightAnchor.constraint(equalToConstant: 22),
-            gender.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 31),
-            gender.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -312),
-            gender.topAnchor.constraint(equalTo: doublePasswordField.bottomAnchor, constant: 35),
+            genderLabel.heightAnchor.constraint(equalToConstant: 22),
+            genderLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 31),
+            genderLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -312),
+            genderLabel.topAnchor.constraint(equalTo: doublePasswordField.bottomAnchor, constant: 35),
             
-            genderSelect.heightAnchor.constraint(equalToConstant: 22),
-            genderSelect.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 244),
-            genderSelect.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -51),
-            genderSelect.topAnchor.constraint(equalTo: doublePasswordField.bottomAnchor, constant: 35),
+            pickerViewButton.heightAnchor.constraint(equalToConstant: 22),
+            pickerViewButton.widthAnchor.constraint(equalToConstant: 100),
+            pickerViewButton.leftAnchor.constraint(equalTo: genderLabel.rightAnchor, constant: 181),
+            pickerViewButton.topAnchor.constraint(equalTo: doublePasswordField.bottomAnchor, constant: 35),
             
             proceedButton.heightAnchor.constraint(equalToConstant: 50),
             proceedButton.topAnchor.constraint(equalTo: doublePasswordField.bottomAnchor, constant: 106),
@@ -204,3 +259,31 @@ class RegistrationViewController: FlexScrollViewController {
         ])
     }
 }
+
+extension RegistrationViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        label.text = Array(genderData)[row]
+        label.font = UIFont.systemFont(ofSize: 25, weight: .regular)
+        label.textColor = UIColor.black
+        label.sizeToFit()
+        return label
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return  1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return genderData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        
+        return 50
+        
+    }
+}
+
+

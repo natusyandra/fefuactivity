@@ -14,8 +14,15 @@
 		1DE4E5CE270A5CD0004A30CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4E5CD270A5CD0004A30CA /* Assets.xcassets */; };
 		1DE4E5D1270A5CD0004A30CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4E5CF270A5CD0004A30CA /* LaunchScreen.storyboard */; };
 		6E090A332835E68D006EC04F /* EmptyStateUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E090A322835E68D006EC04F /* EmptyStateUI.swift */; };
+		6E3C22F62859AC27003909A3 /* CoreDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C22F52859AC27003909A3 /* CoreDataContainer.swift */; };
+		6E867AAD284DCC170051E9A4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E867AAC284DCC170051E9A4 /* Models.swift */; };
+		6E867AB2284DCCE00051E9A4 /* ActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E867AB1284DCCE00051E9A4 /* ActivityCollectionViewCell.swift */; };
+		6E867AB4284F19FD0051E9A4 /* ActivityPauseStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E867AB3284F19FD0051E9A4 /* ActivityPauseStopView.swift */; };
+		6E867AB6284F1CF00051E9A4 /* ButtonViewСircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E867AB5284F1CF00051E9A4 /* ButtonViewСircle.swift */; };
+		6E8F27FC284878AA00C5575B /* fefuactivity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F27FA284878AA00C5575B /* fefuactivity.xcdatamodeld */; };
 		6E91563E2823A7380027B1DE /* logoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91563D2823A7380027B1DE /* logoView.swift */; };
 		6E9156402824CD560027B1DE /* FlexScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91563F2824CD560027B1DE /* FlexScrollView.swift */; };
+		6E9C7251284DBDAF00F428DC /* ActivityStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9C7250284DBDAF00F428DC /* ActivityStartView.swift */; };
 		6EA7BDD7282B955B00C18233 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA7BDD6282B955B00C18233 /* TableViewCell.swift */; };
 		6EA7BDE0282BB0DF00C18233 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA7BDDF282BB0DF00C18233 /* ActivityViewController.swift */; };
 		6EA7BDE2282E0BB800C18233 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA7BDE1282E0BB800C18233 /* TabBarController.swift */; };
@@ -24,7 +31,10 @@
 		6EB7657528223486005CC9D8 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB7657428223486005CC9D8 /* ButtonView.swift */; };
 		6EB765792822480E005CC9D8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB765782822480E005CC9D8 /* Color.swift */; };
 		6EB7657B28227FC5005CC9D8 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB7657A28227FC5005CC9D8 /* Font.swift */; };
+		6EEC6181285857870047EF90 /* ActivityEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC617F285857870047EF90 /* ActivityEntity+CoreDataClass.swift */; };
+		6EEC6182285857870047EF90 /* ActivityEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC6180285857870047EF90 /* ActivityEntity+CoreDataProperties.swift */; };
 		6EFDC2F32837504B00EE2D2F /* ActivityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDC2F22837504B00EE2D2F /* ActivityDetailsViewController.swift */; };
+		6EFDC2FF283F560200EE2D2F /* CreateActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDC2FE283F560200EE2D2F /* CreateActivityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +47,16 @@
 		1DE4E5D0270A5CD0004A30CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DE4E5D2270A5CD0004A30CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E090A322835E68D006EC04F /* EmptyStateUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateUI.swift; sourceTree = "<group>"; };
+		6E3C22F52859AC27003909A3 /* CoreDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataContainer.swift; sourceTree = "<group>"; };
+		6E867AAC284DCC170051E9A4 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		6E867AB1284DCCE00051E9A4 /* ActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewCell.swift; sourceTree = "<group>"; };
+		6E867AB3284F19FD0051E9A4 /* ActivityPauseStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPauseStopView.swift; sourceTree = "<group>"; };
+		6E867AB5284F1CF00051E9A4 /* ButtonViewСircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ButtonViewСircle.swift"; sourceTree = "<group>"; };
+		6E8F27FB284878AA00C5575B /* fefuactivity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = fefuactivity.xcdatamodel; sourceTree = "<group>"; };
+		6E91551228470FEF0016FF17 /* FakeLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FakeLocation.gpx; sourceTree = "<group>"; };
 		6E91563D2823A7380027B1DE /* logoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logoView.swift; sourceTree = "<group>"; };
 		6E91563F2824CD560027B1DE /* FlexScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexScrollView.swift; sourceTree = "<group>"; };
+		6E9C7250284DBDAF00F428DC /* ActivityStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStartView.swift; sourceTree = "<group>"; };
 		6EA7BDD6282B955B00C18233 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		6EA7BDDF282BB0DF00C18233 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		6EA7BDE1282E0BB800C18233 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -47,7 +65,10 @@
 		6EB7657428223486005CC9D8 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		6EB765782822480E005CC9D8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		6EB7657A28227FC5005CC9D8 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		6EEC617F285857870047EF90 /* ActivityEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActivityEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6EEC6180285857870047EF90 /* ActivityEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActivityEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6EFDC2F22837504B00EE2D2F /* ActivityDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsViewController.swift; sourceTree = "<group>"; };
+		6EFDC2FE283F560200EE2D2F /* CreateActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateActivityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				6EFDC2F9283CB1F200EE2D2F /* Resurces */,
+				6EFDC2FD283F55E400EE2D2F /* Lesson 3 */,
 				6EA7BDD8282B9EAD00C18233 /* Lesson 1 */,
 				6EA7BDDC282B9F2F00C18233 /* Lesson 2 */,
 				6EB765762822447D005CC9D8 /* UIComponents */,
@@ -78,6 +100,50 @@
 				1DE4E5C1270A5CCE004A30CA /* fefuactivity.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6E867AAA284DCBF60051E9A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6E867AAC284DCC170051E9A4 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6E867AAB284DCC030051E9A4 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				6E91551228470FEF0016FF17 /* FakeLocation.gpx */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		6E867AAE284DCC570051E9A4 /* CreateActivityViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6E867AAF284DCC700051E9A4 /* UIComponents */,
+				6EFDC2FE283F560200EE2D2F /* CreateActivityViewController.swift */,
+				6E867AAA284DCBF60051E9A4 /* Models */,
+			);
+			path = CreateActivityViewController;
+			sourceTree = "<group>";
+		};
+		6E867AAF284DCC700051E9A4 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				6E9C7250284DBDAF00F428DC /* ActivityStartView.swift */,
+				6E867AB3284F19FD0051E9A4 /* ActivityPauseStopView.swift */,
+				6E867AB0284DCCC10051E9A4 /* Cell */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		6E867AB0284DCCC10051E9A4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6E867AB1284DCCE00051E9A4 /* ActivityCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		6EA7BDD8282B9EAD00C18233 /* Lesson 1 */ = {
@@ -128,12 +194,24 @@
 			isa = PBXGroup;
 			children = (
 				6EB7657428223486005CC9D8 /* ButtonView.swift */,
+				6E867AB5284F1CF00051E9A4 /* ButtonViewСircle.swift */,
 				6EB765782822480E005CC9D8 /* Color.swift */,
 				6EB7657A28227FC5005CC9D8 /* Font.swift */,
 				6E91563D2823A7380027B1DE /* logoView.swift */,
 				6E91563F2824CD560027B1DE /* FlexScrollView.swift */,
 			);
 			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		6EEC617428583F130047EF90 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6EEC617F285857870047EF90 /* ActivityEntity+CoreDataClass.swift */,
+				6EEC6180285857870047EF90 /* ActivityEntity+CoreDataProperties.swift */,
+				6E8F27FA284878AA00C5575B /* fefuactivity.xcdatamodeld */,
+				6E3C22F52859AC27003909A3 /* CoreDataContainer.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		6EFDC2F6283CB15C00EE2D2F /* ActivityViewController */ = {
@@ -189,6 +267,16 @@
 				6EA7BDD6282B955B00C18233 /* TableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		6EFDC2FD283F55E400EE2D2F /* Lesson 3 */ = {
+			isa = PBXGroup;
+			children = (
+				6EEC617428583F130047EF90 /* CoreData */,
+				6E867AAE284DCC570051E9A4 /* CreateActivityViewController */,
+				6E867AAB284DCC030051E9A4 /* Location */,
+			);
+			path = "Lesson 3";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,21 +349,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E867AB6284F1CF00051E9A4 /* ButtonViewСircle.swift in Sources */,
 				6E91563E2823A7380027B1DE /* logoView.swift in Sources */,
 				6E090A332835E68D006EC04F /* EmptyStateUI.swift in Sources */,
 				6EA7BDE2282E0BB800C18233 /* TabBarController.swift in Sources */,
 				1DE4E5C9270A5CCE004A30CA /* LoginViewController.swift in Sources */,
+				6E867AB4284F19FD0051E9A4 /* ActivityPauseStopView.swift in Sources */,
 				6EB7657128222DE4005CC9D8 /* HelloScreenViewController.swift in Sources */,
+				6EEC6181285857870047EF90 /* ActivityEntity+CoreDataClass.swift in Sources */,
 				1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */,
 				6E9156402824CD560027B1DE /* FlexScrollView.swift in Sources */,
+				6E8F27FC284878AA00C5575B /* fefuactivity.xcdatamodeld in Sources */,
 				1DE4E5C7270A5CCE004A30CA /* SceneDelegate.swift in Sources */,
+				6E9C7251284DBDAF00F428DC /* ActivityStartView.swift in Sources */,
+				6E867AB2284DCCE00051E9A4 /* ActivityCollectionViewCell.swift in Sources */,
 				6EB7657B28227FC5005CC9D8 /* Font.swift in Sources */,
 				6EB7657328223180005CC9D8 /* RegistrationViewController.swift in Sources */,
 				6EFDC2F32837504B00EE2D2F /* ActivityDetailsViewController.swift in Sources */,
 				6EA7BDD7282B955B00C18233 /* TableViewCell.swift in Sources */,
+				6E3C22F62859AC27003909A3 /* CoreDataContainer.swift in Sources */,
 				6EA7BDE0282BB0DF00C18233 /* ActivityViewController.swift in Sources */,
+				6E867AAD284DCC170051E9A4 /* Models.swift in Sources */,
 				6EB7657528223486005CC9D8 /* ButtonView.swift in Sources */,
 				6EB765792822480E005CC9D8 /* Color.swift in Sources */,
+				6EFDC2FF283F560200EE2D2F /* CreateActivityViewController.swift in Sources */,
+				6EEC6182285857870047EF90 /* ActivityEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,9 +520,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4TAXLE7T2Y;
-				INFOPLIST_FILE = fefuactivity/Info.plist;
+				DEVELOPMENT_TEAM = 3PR45WW6CK;
+				INFOPLIST_FILE = "$(SRCROOT)/Resurces/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -432,6 +531,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.feip.fefuactivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -442,9 +542,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4TAXLE7T2Y;
-				INFOPLIST_FILE = fefuactivity/Info.plist;
+				DEVELOPMENT_TEAM = 3PR45WW6CK;
+				INFOPLIST_FILE = "$(SRCROOT)/Resurces/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,6 +553,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.feip.fefuactivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -479,6 +581,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6E8F27FA284878AA00C5575B /* fefuactivity.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6E8F27FB284878AA00C5575B /* fefuactivity.xcdatamodel */,
+			);
+			currentVersion = 6E8F27FB284878AA00C5575B /* fefuactivity.xcdatamodel */;
+			path = fefuactivity.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1DE4E5B9270A5CCE004A30CA /* Project object */;
 }

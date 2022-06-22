@@ -87,7 +87,7 @@ class HelloScreenViewController: UIViewController {
                                       for: .touchUpInside)
         
         addSubviews()
-        layoutViews()
+        layoutConstraints()
     }
     
     func addSubviews() {
@@ -99,7 +99,7 @@ class HelloScreenViewController: UIViewController {
         view.addSubview(studentLabel)
     }
     
-    func layoutViews() {
+    func layoutConstraints() {
         NSLayoutConstraint.activate([
             logoView.widthAnchor.constraint(equalToConstant: 109.5),
             logoView.heightAnchor.constraint(equalToConstant: 111.22),
@@ -139,7 +139,5 @@ class HelloScreenViewController: UIViewController {
     
     @objc func handleShowLogin() {
         navigationController?.pushViewController(LoginViewController(), animated: true)
-        //        let nav = UINavigationController(rootViewController: LoginViewController())
-        //        self.present(nav, animated: true, completion: nil)
     }
 }

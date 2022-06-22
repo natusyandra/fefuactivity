@@ -14,21 +14,20 @@ protocol FormTableViewCellDelegate: AnyObject {
 
 class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     
+    
     public weak var delegate: FormTableViewCellDelegate?
     
-    private let distanceLabel: UILabel = {
+    public let distanceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.text = "14.32 км"
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let timeLabel: UILabel = {
+    public let timeLabel: UILabel = {
         let label = UILabel()
-        label.text = "2 часа 46 минут"
         label.textColor = .secondaryLabel
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.numberOfLines = 1
@@ -36,10 +35,10 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         return label
     }()
     
-    private let meansLabel: UILabel = {
+    public let meansLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.text = "Велосипед"
+        label.text = ""
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -53,10 +52,9 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         return image
     }()
     
-    private let timeAgoLabel: UILabel = {
+    public let timeAgoLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
-        label.text = "14 часов назад"
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +74,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         contentView.backgroundColor = .white
         backgroundColor = .clear
         
-        layoutViews()
+        layoutConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -88,7 +86,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
     }
     
-    func layoutViews() {
+    func layoutConstraints() {
         NSLayoutConstraint.activate([
             distanceLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
             distanceLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
@@ -106,10 +104,30 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
             meansLabel.bottomAnchor.constraint(equalTo: meansSymbol.bottomAnchor, constant: 0),
             meansLabel.heightAnchor.constraint(equalToConstant: 18),
             
-            timeAgoLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 219),
             timeAgoLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             timeAgoLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             timeAgoLabel.heightAnchor.constraint(equalToConstant: 18)
         ])
+    }
+    
+    public func setupData(_ data: ActivityEntity) {
+        
+        let value = (data.distance).rounded() / 1000
+        let roundText = String(format: "%.1f", value)
+        distanceLabel.text = "\(roundText) км"
+        
+        meansLabel.text = data.type
+        
+        let hours = data.timerData / 3600
+        let minutes = data.timerData / 60 % 60
+        let restTime = ((hours<10) ? "" : "") + String(hours) + " часа" + ((minutes<10) ? " " : "") + String(minutes) + " минут"
+        timeLabel.text = "\(restTime)"
+        
+        let date = Date()
+        let timeAgoFormatted = RelativeDateTimeFormatter()
+        timeAgoFormatted.unitsStyle = .full
+        timeAgoFormatted.dateTimeStyle = .named
+        let string = timeAgoFormatted.localizedString(for: data.finishTime ?? Date(), relativeTo: date)
+        timeAgoLabel.text = string
     }
 }

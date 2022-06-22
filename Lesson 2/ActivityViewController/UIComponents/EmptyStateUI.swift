@@ -41,14 +41,14 @@ class EmptyState: UIView {
         addSubview(titleLabel)
         addSubview(messageLabel)
         
-        layoutViews()
+        layoutConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func layoutViews() {
+    func layoutConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),

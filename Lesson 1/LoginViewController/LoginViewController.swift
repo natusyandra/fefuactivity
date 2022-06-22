@@ -78,7 +78,7 @@ class LoginViewController: FlexScrollViewController {
         view.backgroundColor = .systemBackground
         
         addSubviews()
-        layoutViews()
+        layoutConstraints()
         proceedButton.addTarget(self,
                                 action: #selector(handleShowActivity),
                                 for: .touchUpInside)
@@ -94,7 +94,7 @@ class LoginViewController: FlexScrollViewController {
         scrollView.keyboardDismissMode = .onDrag
     }
     
-    func layoutViews() {
+    func layoutConstraints() {
         NSLayoutConstraint.activate([
             userLoginField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
             userLoginField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
@@ -130,4 +130,3 @@ class LoginViewController: FlexScrollViewController {
         self.present(vc, animated: true)
     }
 }
-
