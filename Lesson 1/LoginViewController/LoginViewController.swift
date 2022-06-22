@@ -130,4 +130,3 @@ class LoginViewController: FlexScrollViewController {
         self.present(vc, animated: true)
     }
 }
-

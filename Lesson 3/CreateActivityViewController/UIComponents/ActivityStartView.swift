@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 protocol ActivityStartViewProtocol: AnyObject {
     func selectItem(_ index: Int)
     func didStartButtonTapped()

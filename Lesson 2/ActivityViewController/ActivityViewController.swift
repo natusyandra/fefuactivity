@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+
 struct Section {
     let data: [ActivityEntity]
     let title: String
@@ -21,13 +22,11 @@ class ActivityViewController: UIViewController {
                            forCellReuseIdentifier: "identifier")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-//        tableView.isHidden = true
         return tableView
     }()
     
     private let emptyState: EmptyState = {
         let emptyState = EmptyState()
-        emptyState.isHidden = true
         return emptyState
     }()
     
@@ -38,6 +37,7 @@ class ActivityViewController: UIViewController {
     }()
     
     //MARK: - Sections/Data
+    
     public var dataSourse: [Section] = []
 
     override func viewDidLoad() {
@@ -49,11 +49,10 @@ class ActivityViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
-        startButton.addTarget(self,
-                              action: #selector(openMapView),
-                              for: .touchUpInside)
+        startButton.addTarget(self, action: #selector(openMapView), for: .touchUpInside)
+
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Назад", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        
+//        
 //        deleteAllCoreData()
     }
     
@@ -62,6 +61,19 @@ class ActivityViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         
         getFromCoreData()
+        openEmptyState()
+    }
+    
+    func openEmptyState() {
+        
+        if dataSourse.isEmpty {
+            tableView.isHidden = true
+            emptyState.isHidden = false
+            
+        } else {
+            tableView.isHidden = false
+            emptyState.isHidden = true
+        }
     }
     
     func getFromCoreData() {
@@ -86,6 +98,7 @@ class ActivityViewController: UIViewController {
             try context.execute(deleteRequest)
             try context.save()
             tableView.reloadData()
+            
         } catch {
             print("ERROR")
         }
@@ -115,11 +128,6 @@ class ActivityViewController: UIViewController {
             emptyState.heightAnchor.constraint(equalToConstant: 91),
             emptyState.widthAnchor.constraint(equalToConstant: 297)
         ])
-    }
-    
-    @objc func openTableView() {
-        emptyState.isHidden = true
-        tableView.isHidden = false
     }
     
     @objc func openMapView() {
@@ -168,6 +176,7 @@ class ActivityViewController: UIViewController {
 }
 
 //MARK: - TableView
+
 extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

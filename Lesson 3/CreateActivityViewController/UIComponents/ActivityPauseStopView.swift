@@ -31,7 +31,6 @@ class ActivityPauseStopView: UIView {
     public let timeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        //        label.font = UIFont.systemFont(ofSize: 24, weight: .regular)
         label.font = UIFont.monospacedSystemFont(ofSize: 24, weight: .regular)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -139,7 +139,5 @@ class HelloScreenViewController: UIViewController {
     
     @objc func handleShowLogin() {
         navigationController?.pushViewController(LoginViewController(), animated: true)
-        //        let nav = UINavigationController(rootViewController: LoginViewController())
-        //        self.present(nav, animated: true, completion: nil)
     }
 }

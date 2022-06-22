@@ -55,7 +55,6 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     public let timeAgoLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
-        label.text = "14 часов назад"
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -105,7 +104,6 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
             meansLabel.bottomAnchor.constraint(equalTo: meansSymbol.bottomAnchor, constant: 0),
             meansLabel.heightAnchor.constraint(equalToConstant: 18),
             
-            timeAgoLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 219),
             timeAgoLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             timeAgoLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             timeAgoLabel.heightAnchor.constraint(equalToConstant: 18)
@@ -114,7 +112,7 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     public func setupData(_ data: ActivityEntity) {
         
-        let value = (data.distance * 1000).rounded() / 1000
+        let value = (data.distance).rounded() / 1000
         let roundText = String(format: "%.1f", value)
         distanceLabel.text = "\(roundText) км"
         
@@ -128,22 +126,8 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         let date = Date()
         let timeAgoFormatted = RelativeDateTimeFormatter()
         timeAgoFormatted.unitsStyle = .full
+        timeAgoFormatted.dateTimeStyle = .named
         let string = timeAgoFormatted.localizedString(for: data.finishTime ?? Date(), relativeTo: date)
         timeAgoLabel.text = string
     }
 }
-
-
-//extension Date {
-//   func getFormattedDate(format: String) -> String {
-//        let dateformat = DateFormatter()
-//        dateformat.dateFormat = format
-//        return dateformat.string(from: self)
-//    }
-    
-//    func timeAgoDisplay() -> String {
-//           let formatter = RelativeDateTimeFormatter()
-//           formatter.unitsStyle = .full
-//           return formatter.localizedString(for: self, relativeTo: Date())
-//       }
-//}

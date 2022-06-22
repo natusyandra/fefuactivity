@@ -150,7 +150,7 @@ class ActivityDeteilsViewController: UIViewController {
     
     public func setupData(_ data: ActivityEntity) {
         
-        let value = (data.distance * 1000).rounded() / 1000
+        let value = (data.distance).rounded() / 1000
         let roundText = String(format: "%.1f", value)
         distanceLabel.text = "\(roundText) км"
         
